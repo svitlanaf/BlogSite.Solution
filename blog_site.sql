@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.7
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: May 23, 2019 at 04:52 PM
--- Server version: 5.6.38
--- PHP Version: 7.2.1
+-- Generation Time: Jun 14, 2019 at 05:21 AM
+-- Server version: 5.7.25
+-- PHP Version: 7.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -44,9 +44,7 @@ INSERT INTO `blogs` (`id`, `title`, `about`, `username`, `password`) VALUES
 (1, 'Hello', 'This is something', 'lana', '111'),
 (3, 'My Awesome Blog', 'bla', 'blabla', '1111'),
 (4, 'My Awesome Blog', 'lol', 'vitalii', '1'),
-(5, 'Just Chilling', 'Sup. I’m Dwight. I skateboard, game, make youtube videos, and make youtube videos about skating and gaming. Yeah, that’s pretty much it. Oh, and my favorite color is green ;)\r\n', 'D-Wight', 'password'),
-(6, 'My Crazy Life With Kitties', 'Welcome current and aspiring cat moms and dads! I made this blog to chronicle my adventures in kitty care,  and to share advice with other cat lovers in the community. Thanks for reading! \r\n', 'CatLuvr143', 'password'),
-(7, 'Haters Gonna Hate', 'This is a place for me to vent because I can’t trust anyone not to snitch on me except my bff Jessica who knows about this blog lol\r\n', 'IH8Work', 'password');
+(5, 'My Awesome Blog', 'Super duper awesome blog!', 'lalalala', '1111');
 
 -- --------------------------------------------------------
 
@@ -58,6 +56,20 @@ CREATE TABLE `blogs_communities` (
   `id` int(11) NOT NULL,
   `blog_id` int(11) NOT NULL,
   `community_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comments`
+--
+
+CREATE TABLE `comments` (
+  `id` int(11) NOT NULL,
+  `post_id` int(11) NOT NULL,
+  `author_id` int(11) NOT NULL,
+  `content` text NOT NULL,
+  `timestamp` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -77,11 +89,9 @@ CREATE TABLE `communities` (
 --
 
 INSERT INTO `communities` (`id`, `name`, `description`) VALUES
-(1, 'Cats', 'If you’re a friend to felines, you’re a friend of ours!'),
-(2, 'Skateboarding', 'Come talk gear, techniques, competition and anything else skateboarding related'),
-(3, 'Food & Cooking ', 'Do you like to cook? Do you like to eat? Check us out'),
-(4, 'Books', 'Help us keep the lost art of reading alive. Enter a giveaway, start a book club, or search for recommendations!'),
-(5, 'Technology', 'All’s fair in hardware and software');
+(1, 'Sport', 'Yoga bla  bla'),
+(2, 'Travelling', 'Bla bla bla'),
+(3, 'fff', 'fffff');
 
 -- --------------------------------------------------------
 
@@ -103,12 +113,21 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id`, `blog_id`, `title`, `content`, `date`, `file`) VALUES
-(9, 5, 'Hey dudes', 'Wassup internet, if you’re not here from my channel I’m D-WightSk8s on youtube. Check it out. I’ve been skating since I was a kid and have been told I could be the next Tony Hawk. People even say I kinda look like him haha.\r\n', '2019-05-23 09:19:38', NULL),
-(10, 5, '150 subscriber special', 'Actually it’s 153 now, just sayin. If you take a pic of your board with D-WightSk8s written on the bottom I’ll enter you in a giveaway to get one of my old boards. I was gonna sell it but since you guys have supported me so much I wanted to do something just for y’all.\r\n', '2019-05-23 09:36:23', NULL),
-(11, 5, 'Update on where I’ve been', 'Yeah so I busted my ankle up pretty bad. I was trying a pretty high jump and going for a record. Got pretty close but I wiped out.  Had to go to the E.R. and everything. It’s chill though because I’ve kinda been wanting to focus on my gaming career anyways but It sucks to not be able to skate.\r\n', '2019-05-23 09:36:45', NULL),
-(12, 6, 'Hello Cat Community!', 'It’s so nice to meet like minded people, I’m really happy that I have found a place to talk about my kitties and hear about the adventures of other kitties! I have four cats: Tiger, Puma, Simba, and Mittens.\r\n', '2019-05-23 09:38:01', NULL),
-(13, 7, 'Blah', 'I don’t want to get sued or anything so I won’t say where I work but it rhymes with BarSucks. Almost all my coworkers are lame and have never broken a rule in their life. I don’t see why I can’t just make myself a smoothie if there’s only a short line. How am I supposed to work without any energy?\r\n', '2019-05-23 09:39:38', NULL),
-(14, 7, 'Everything Sucks', 'Turns out that two faced lying snake Jessica got me fired. On. Purpose. Our manager even let her get free lunch as a reward and she had the nerve to reserve one of the last of the good salads we had left. So I dumped it in the compost bin. I did what I had to do. Jessica, I hope you’re reading this. I hope you starved.  I hope you know karma is coming for you.\r\n', '2019-05-23 09:40:00', NULL);
+(1, 1, 'This is first post', 'This is content of a very first post', '2019-05-20 00:00:00', NULL),
+(2, 1, 'This is second post', 'This is a second post content', '2019-05-20 00:00:00', NULL),
+(3, 1, 'Hello', 'Hello world', '2019-05-21 00:00:00', NULL),
+(4, 0, 'bla', 'bnls', '2019-05-21 21:57:14', NULL),
+(5, 3, 'bla', 'bla', '2019-05-21 22:23:25', NULL),
+(6, 3, 'bla', 'bla', '2019-05-21 22:24:25', NULL),
+(7, 1, 'Test', 'dfgdfg dfg dfg df', '2019-05-21 23:08:11', NULL),
+(8, 1, 'Test2', 'dfgdfg dfg dfg df', '2019-05-21 23:09:04', NULL),
+(9, 3, 'bla', 'bla', '2019-05-22 00:20:49', '1.jpg'),
+(10, 3, 'bla1', 'bla1', '2019-05-22 00:22:40', NULL),
+(11, 1, 'test3', 'test test', '2019-05-22 09:28:42', '1.jpg'),
+(29, 5, 'My super shitty day', 'Lorem ipsum shitty day', '2019-05-23 14:41:30', '1.jpg'),
+(30, 5, 'My super duper day', 'Lorem ipsum bla bla bla', '2019-05-23 14:53:46', NULL),
+(31, 5, 'bla', 'bla', '2019-05-23 21:50:08', '1.jpg'),
+(53, 5, 'bla', 'Lorem ipsum dolor sit amet, ea nemore saperet sea. Nec te aeterno probatus principes, autem dolor ex ius. At has eirmod ancillae scriptorem, at patrioque euripidis nam, vix facer errem verterem in. An autem commodo quo, te sit possim impetus, his quas ubique aliquando an. Veniam melius explicari sit ex, causae utamur no pri, his no convenire iudicabit. Eos nisl verear eu, no quod vide saepe cum, detracto vulputate per ea.\r\n\r\nSummo explicari constituto at mel, ei vel zril eripuit philosophia, dicat maiestatis id vim. Ea audire debitis ancillae his. Timeam sententiae an sed, ex his officiis tincidunt. Adhuc argumentum ad sea. Soleat periculis eam ex.\r\n\r\nCu cum esse reformidans, ut nam sint doctus, quo te falli regione. Tota omittantur sea id, an vel tamquam legendos salutandi, pro ferri fierent dissentias et. Cum ut mundi audire, vim in essent labores deterruisset. At quodsi vocent mediocritatem quo.\r\n\r\nVocibus graecis ne usu, vel ei quis liberavisse. Scripta urbanitas vel ad, vim ornatus maluisset te. Nulla quaeque nec eu, aperiri lobortis vim ad. Ne sea case wisi civibus, in postea probatus mei.\r\n\r\nSimul splendide appellantur eu ius, per in accusata interpretaris. Mazim recteque definitionem sea at, id usu possit commodo. Autem explicari sea ne, in lorem graece quidam cum. Eam suas mediocrem et. An etiam intellegebat pri, error ludus homero te vim, mea odio ullum epicurei ut.\r\n\r\nConsetetur appellantur et quo, et dicam detracto mei, elit munere probatus mei ei. Mel noster fastidii atomorum cu, eam solet aliquid erroribus id. Vix soluta electram appellantur ea. Case docendi duo te. Vide legimus ea sit, soleat recteque salutandi ex sea.\r\n\r\nUsu et movet omnium, his ea utroque omnesque pericula. Ius ad docendi expetenda percipitur, sed in civibus definitiones. Ius ne intellegat inciderint adversarium. Omnium lobortis cu per. At debitis salutatus sit, sed populo nostro audire ut, quaeque docendi his ut. Cu vim porro legendos platonem.\r\n\r\nEx aperiri detraxit nam. Ut has iudico disputationi, duo ex adhuc nonumes eloquentiam. Nulla fuisset ancillae at quo, sea et quis dicat utroque, minimum percipitur mel an. Ad vim vide inciderint, per mucius suavitate te. Ut vidisse senserit quo, quo mentitum nominavi elaboraret ut, at omnium ullamcorper consectetuer sit.\r\n\r\nHas ut option feugiat, cu dicit facilisis aliquando qui, per cu diam omnium facilisi. In sea sumo sanctus ceteros, efficiendi instructior eam in, ocurreret incorrupte usu ei. Duo ea vitae legere menandri, vix id saepe voluptatibus. Id ius iisque lucilius, eu probo verear deleniti est. Quo at erant luptatum sententiae, voluptatum disputando id eam. At eum inani scripserit, in sed scripta aperiri.\r\n\r\nVoluptaria inciderint sit ea, summo evertitur ei usu. Simul volumus similique nam ut, te verterem interesset his, id sed gloriatur percipitur. Duo cu facer saepe possim, ad mei dicit eirmod, viris iudicabit vix in. Te volutpat intellegat nam. Vix dico posidonium cu, eam id nonumy lobortis maiestatis.', '2019-05-24 12:28:39', '636942982067809370DSC_0377.JPG');
 
 -- --------------------------------------------------------
 
@@ -120,6 +139,13 @@ CREATE TABLE `session_blogs` (
   `id` int(11) NOT NULL,
   `blog_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `session_blogs`
+--
+
+INSERT INTO `session_blogs` (`id`, `blog_id`) VALUES
+(5, 5);
 
 --
 -- Indexes for dumped tables
@@ -135,6 +161,12 @@ ALTER TABLE `blogs`
 -- Indexes for table `blogs_communities`
 --
 ALTER TABLE `blogs_communities`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `comments`
+--
+ALTER TABLE `comments`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -163,7 +195,7 @@ ALTER TABLE `session_blogs`
 -- AUTO_INCREMENT for table `blogs`
 --
 ALTER TABLE `blogs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `blogs_communities`
@@ -172,22 +204,28 @@ ALTER TABLE `blogs_communities`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `communities`
 --
 ALTER TABLE `communities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `session_blogs`
 --
 ALTER TABLE `session_blogs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

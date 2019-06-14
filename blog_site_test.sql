@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: May 22, 2019 at 06:48 AM
+-- Generation Time: Jun 14, 2019 at 05:21 AM
 -- Server version: 5.7.25
 -- PHP Version: 7.3.1
 
@@ -48,6 +48,46 @@ CREATE TABLE `blogs_communities` (
   `community_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `blogs_communities`
+--
+
+INSERT INTO `blogs_communities` (`id`, `blog_id`, `community_id`) VALUES
+(1, 15, 1),
+(2, 26, 7),
+(3, 37, 13),
+(4, 48, 19),
+(5, 59, 25),
+(6, 70, 31),
+(7, 83, 37),
+(8, 96, 43),
+(9, 108, 49),
+(10, 120, 55),
+(11, 132, 61),
+(12, 144, 67),
+(13, 156, 75),
+(14, 168, 83),
+(15, 180, 91),
+(16, 192, 99),
+(17, 204, 107),
+(18, 216, 115),
+(19, 227, 123),
+(20, 238, 131);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comments`
+--
+
+CREATE TABLE `comments` (
+  `id` int(11) NOT NULL,
+  `post_id` int(11) NOT NULL,
+  `author_id` int(11) NOT NULL,
+  `content` text NOT NULL,
+  `timestamp` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 -- --------------------------------------------------------
 
 --
@@ -87,6 +127,13 @@ CREATE TABLE `session_blogs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Dumping data for table `session_blogs`
+--
+
+INSERT INTO `session_blogs` (`id`, `blog_id`) VALUES
+(36, 236);
+
+--
 -- Indexes for dumped tables
 --
 
@@ -100,6 +147,12 @@ ALTER TABLE `blogs`
 -- Indexes for table `blogs_communities`
 --
 ALTER TABLE `blogs_communities`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `comments`
+--
+ALTER TABLE `comments`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -128,12 +181,18 @@ ALTER TABLE `session_blogs`
 -- AUTO_INCREMENT for table `blogs`
 --
 ALTER TABLE `blogs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `blogs_communities`
 --
 ALTER TABLE `blogs_communities`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `comments`
+--
+ALTER TABLE `comments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -146,13 +205,13 @@ ALTER TABLE `communities`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `session_blogs`
 --
 ALTER TABLE `session_blogs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

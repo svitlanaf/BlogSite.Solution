@@ -6,7 +6,7 @@
 
 ## Description
 
-_This application allows users to register with username and password, add blog, add posts to the blog, add communities to their blog, tomake a search in posts._
+_This application allows users to register with username and password, add blog, add posts to the blog, add communities to their blog, to make a search in posts._
 
 ## Blog Site Specifications
 
@@ -25,6 +25,7 @@ _This application allows users to register with username and password, add blog,
 * _As a registered user I need to be able to add my blog to any community._
 * _As a registered user I need to be able to remove communities form my blog._
 * _As a registered user I need to be able to add a new community._
+* _As a registered user I need to be able to add comments to posts._
 
 
 ## Setup/Installation Requirements
@@ -38,9 +39,10 @@ _This application allows users to register with username and password, add blog,
 *  _3. CREATE TABLE blogs (id serial PRIMARY KEY NOT NULL, title VARCHAR(255), about TEXT, username VARCHAR(255), password VARCHAR(255));_
 *  _4. CREATE TABLE blogs_communities (id serial PRIMARY KEY NOT NULL, blog_id INT, community_id INT);_
 *  _5. CREATE TABLE communities (id serial PRIMARY KEY NOT NULL, name VARCHAR(255), description TEXT);_
-*  _6. CREATE TABLE posts (id serial PRIMARY KEY NOT NULL, blog_ig INT, title VARCHAR(255), content TEXT, date DATE, file VARCHAR(255) NULL);_
-*  _7. CREATE TABLE session_blogs (id serial PRIMARY KEY NOT NULL, blog_ig INT);_
-*  _8. SHOW TABLES;_
+*  _6. CREATE TABLE posts (id serial PRIMARY KEY NOT NULL, blog_id INT, title VARCHAR(255), content TEXT, date DATE, file VARCHAR(255) NULL);_
+*  _7. CREATE TABLE session_blogs (id serial PRIMARY KEY NOT NULL, blog_id INT);_
+*  _8. CREATE TABLE comments (id serial PRIMARY KEY NOT NULL, post_id INT, author_id INT, content TEXT, timestamp DATE);_
+*  _9. SHOW TABLES;_
 * _Open Terminal (for Mac users) or PowerShell (for Windows users), navigate to BlogSite folder(cd .../Desktop/BlogSite.Solution/BlogSite) and run the following command: dotnet add package MySqlConnector && dotnet restore && dotnet build && dotnet run._
 * _Copy http://localhost:5000 link and paste in the browser of your choise_.
 
