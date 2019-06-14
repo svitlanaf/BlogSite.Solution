@@ -143,9 +143,9 @@ namespace BlogSite.Models
         _id = (int) cmd.LastInsertedId;
         conn.Close();
         if (conn != null)
-            {
-                conn.Dispose();
-            }
+        {
+            conn.Dispose();
+        }
 
     }
 
@@ -271,6 +271,36 @@ namespace BlogSite.Models
             {
                 conn.Dispose();
             }
+        }
+
+        public List<Comment> GetComments()
+        {
+            List<Comment> allComments = new List<Comment>{};
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"SELECT * FROM comments WHERE post_id = @thisId;";
+            MySqlParameter thisId = new MySqlParameter("@thisId", _id);
+            cmd.Parameters.Add(thisId);
+            MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+            while(rdr.Read())
+            {
+                int commentId = rdr.GetInt32(0);
+                int authorId = rdr.GetInt32(1);
+                int postId = rdr.GetInt32(2);
+                string content = rdr.GetString(3);
+                DateTime timestamp = rdr.GetDateTime(4);
+
+                Comment thisComment = new Comment(postId, authorId, content, commentId);
+                thisComment.SetTimestamp(timestamp);
+                allComments.Add(thisComment);
+            }
+            conn.Close();
+            if(conn != null)
+            {
+                conn.Dispose();
+            }
+            return allComments;
         }
 
 
